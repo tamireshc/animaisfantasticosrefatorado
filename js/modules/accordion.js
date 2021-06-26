@@ -1,19 +1,28 @@
-/* eslint-disable no-inner-declarations */
-export default function accordion() {
-  const accordionList = document.querySelectorAll(".js-accordion dt");
-  if (accordionList.length) {
-    const accordionItem = document.querySelectorAll(".js-accordion dd");
-    console.log(accordionList);
-    accordionList[0].classList.add("ativo");
-    accordionItem[0].classList.add("ativo");
+/* ".js-accordion dt" ".js-accordion dd"*/
+export default class Accordion {
+  constructor(listaTitulo, listadescription) {
+    this.accordionList = document.querySelectorAll(listaTitulo);
+    this.accordionItem = document.querySelectorAll(listadescription);
+    console.log(this.accordionList);
+    this.accordionList[0].classList.add("ativo");
+    this.accordionItem[0].classList.add("ativo");
+  }
 
-    accordionList.forEach((item) => {
-      item.addEventListener("click", activeAccordion);
+  activeAccordion(item) {
+    item.classList.toggle("ativo");
+    item.nextElementSibling.classList.toggle("ativo");
+  }
+
+  addLinkEvent() {
+    this.accordionList.forEach((item) => {
+      item.addEventListener("click", () => this.activeAccordion(item));
     });
+  }
 
-    function activeAccordion() {
-      this.classList.toggle("ativo");
-      this.nextElementSibling.classList.toggle("ativo");
+  init() {
+    if (this.accordionList.length) {
+      this.addLinkEvent();
     }
+    return this;
   }
 }

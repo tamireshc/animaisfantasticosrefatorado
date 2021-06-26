@@ -1,30 +1,48 @@
-export default function funcionamento() {}
+export default class Funcionamento {
+  constructor(diasFuncionamento, horarioFuncionamento) {
+    this.diasfuncionamento = document.querySelector(diasFuncionamento);
+    this.diasFuncionametoData = this.diasfuncionamento.dataset.semana
+      .split(",")
+      .map(Number);
 
-const diasfuncionamento = document.querySelector("[data-semana]");
-const diasFuncionametoData = diasfuncionamento.dataset.semana
-  .split(",")
-  .map(Number);
+    this.horaFuncionamento = document.querySelector(horarioFuncionamento);
+    this.horaFuncionementoData = this.horaFuncionamento.dataset.horario
+      .split(",")
+      .map(Number);
 
-const horaFuncionamento = document.querySelector("[data-horario]");
-const horaFuncionementoData = horaFuncionamento.dataset.horario
-  .split(",")
-  .map(Number);
+    console.log(this.diasFuncionametoData, this.horaFuncionementoData);
+  }
 
-console.log(diasFuncionametoData, horaFuncionementoData);
+  dadosAgora() {
+    this.dataAgora = new Date();
+    this.diaAgora = this.dataAgora.getDay();
+    this.horarioAgora = this.dataAgora.getUTCHours() - 3;
+    return this.horarioAgora && this.diaAgora && this.dataAgora;
+  }
 
-const dataAgora = new Date();
-const diaAgora = dataAgora.getDay();
-const horarioAgora = dataAgora.getHours();
+  isOpen() {
+    this.semanaAberto = this.diasFuncionametoData.includes(this.diaAgora);
+    this.horarioAberto =
+      this.horarioAgora >= this.horaFuncionementoData[0] &&
+      this.horarioAgora < this.horaFuncionementoData[1];
 
-const semanaAberto = diasFuncionametoData.includes(diaAgora);
+    return this.semanaAberto && this.horarioAberto;
+  }
 
-const horarioAberto =
-  horarioAgora >= horaFuncionementoData[0] &&
-  horarioAgora < horaFuncionementoData[1];
-console.log(semanaAberto, horarioAberto);
+  ativaAberto() {
+    if (this.isOpen()) {
+      this.diasfuncionamento.classList.add("aberto");
+    } else {
+      this.diasfuncionamento.classList.remove("aberto");
+    }
+  }
 
-if (semanaAberto && horarioAberto) {
-  diasfuncionamento.classList.add("aberto");
-} else {
-  diasfuncionamento.classList.remove("aberto");
+  init() {
+    this.dadosAgora();
+    this.ativaAberto();
+
+    console.log(this.dadosAgora());
+    console.log(this.isOpen());
+    return this;
+  }
 }

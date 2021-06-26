@@ -5,7 +5,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 900;
   display: none;
   justify-content: center;
   align-items: center;
@@ -78,4 +78,21 @@
   font-family: monospace;
   margin-top: 1rem;
   font-weight: bold;
+}
+
+@media (max-width: 700px) {
+  .modal {
+    border: 8px solid #fb5;
+    box-shadow: 0 0 0 8px white;
+    position: relative;
+    min-width: 200px;
+    box-sizing: border-box;
+  }
+
+  .fechar {
+    width: 40px;
+    height: 40px;
+    border: 4px solid white;
+    font-size: 1rem;
+  }
 }

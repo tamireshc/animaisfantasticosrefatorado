@@ -1,23 +1,35 @@
-/* eslint-disable no-inner-declarations */
-export default function animaScroll() {
-  const sections = document.querySelectorAll(".js-scroll");
+import debounce from "./debounce.js";
 
-  if (sections.length) {
-    const windowMetade = window.innerHeight * 0.6;
+export default class AnimaScroll {
+  constructor(sections) {
+    this.sections = document.querySelectorAll(sections);
+    this.windowMetade = window.innerHeight * 0.6;
 
-    function animaScroll() {
-      sections.forEach((section) => {
-        const sectionTop = section.getBoundingClientRect().top - windowMetade;
+    // função debounce para que animaScroll não ative muitas vezes
 
-        if (sectionTop < 0) {
-          section.classList.add("ativo");
-        } else if (section.classList.contains("ativo")) {
-          section.classList.remove("ativo");
-        }
-      });
+    this.animaScroll = debounce(this.animaScroll.bind(this), 200);
+  }
+
+  animaScroll() {
+    console.log("teste");
+    this.sections.forEach((section) => {
+      const sectionTop =
+        section.getBoundingClientRect().top - this.windowMetade;
+
+      if (sectionTop < 0) {
+        section.classList.add("ativo");
+      } else if (section.classList.contains("ativo")) {
+        section.classList.remove("ativo");
+      }
+    });
+  }
+
+  init() {
+    if (this.sections.length) {
+      window.addEventListener("scroll", this.animaScroll);
     }
-    animaScroll();
-
-    window.addEventListener("scroll", animaScroll);
+    // caso tenha algo na tela já animar ao abrir
+    this.animaScroll();
+    return this;
   }
 }

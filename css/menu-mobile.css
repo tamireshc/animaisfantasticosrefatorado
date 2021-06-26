@@ -54,8 +54,4 @@
   .js .dropdown-menu {
     position: static;
   }
-
-  .js .dropdown-menu::before {
-    top: 30px;
-  }
 }

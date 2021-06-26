@@ -1,18 +1,18 @@
 [
   {
-    "especie":"lobos",
-    "quantidade":4874
+    "especie": "lobos",
+    "quantidade": 4874
   },
   {
-     "especie":"raposas",
-    "quantidade":5300
+    "especie": "raposas",
+    "quantidade": 5300
   },
   {
-     "especie":"esquilos",
-    "quantidade":14874
+    "especie": "esquilos",
+    "quantidade": 14874
   },
   {
-     "especie":"ursos",
-    "quantidade":365
+    "especie": "ursos",
+    "quantidade": 365
   }
 ]

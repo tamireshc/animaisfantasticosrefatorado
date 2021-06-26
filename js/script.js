@@ -1,22 +1,39 @@
-import scrollSuave from "./modules/scroll-suave.js";
-scrollSuave();
-import tabNav from "./modules/tab-nav.js";
-tabNav();
+import ScrollSuave from "./modules/scroll-suave.js";
+const scrollSuave = new ScrollSuave(".js-menu a[href^='#']");
+scrollSuave.init();
 
-import accordion from "./modules/accordion.js";
-accordion();
+import TabNav from "./modules/tab-nav.js";
+const tabNav = new TabNav(".js-tabmenu li", ".js-tabcontent section");
+tabNav.init();
 
-import animaScroll from "./modules/anima-scroll.js";
-animaScroll();
+import Accordion from "./modules/accordion.js";
+const accordion = new Accordion(".js-accordion dt", ".js-accordion dd");
+accordion.init();
 
-import modal from "./modules/modal.js";
-modal();
+import AnimaScroll from "./modules/anima-scroll.js";
+const animaScroll = new AnimaScroll(".js-scroll");
+animaScroll.init();
 
-import tooltip from "./modules/tooltip.js";
-tooltip();
+import Modal from "./modules/modal.js";
+const modal = new Modal(
+  "[data-modal='abrir']",
+  "[data-modal='fechar']",
+  "[data-modal='container']"
+);
+modal.init();
 
-import dropDownMenu from "./modules/dropdown-menu.js";
-dropDownMenu();
+import Tooltip from "./modules/tooltip.js";
+const tooltip = new Tooltip("[data-tooltip]");
+tooltip.init();
 
-import menuMobile from "./modules/menu-mobile.js";
-menuMobile();
+import DropDownMenu from "./modules/dropdown-menu.js";
+const dropDownMenu = new DropDownMenu("[data-dropdown]");
+dropDownMenu.init();
+
+import MenuMobile from "./modules/menu-mobile.js";
+const menuMobile = new MenuMobile(
+  "[data-menu='button']",
+  "[data-menu='list']",
+  ["click", "touchstart"]
+);
+menuMobile.init();
